@@ -3,6 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TileData", menuName = "Scriptable Objects/Tile Data")]
 public class TileData : ScriptableObject
 {
-    public Sprite sprite;
-    public bool isWalkable;
+    public bool IsWalkable;
+    public SpriteData SpriteData;
 }

@@ -3,22 +3,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MapData", menuName = "Scriptable Objects/Map Data")]
 public class MapData : ScriptableObject
 {
-    public int width;
-    public int height;
-    public TileData[] tiles;
+    public int Width;
+    public int Height;
+    public TileData[] Tiles;
 
     [SerializeField]
-    public TileData[] availableTiles;
+    public TileData[] AvailableTiles;
 
     public TileData GetTile(int x, int y)
     {
         var index = GetIndex(x, y);
         if (index == -1) return null;
-        return tiles[index];
+        return Tiles[index];
     }
     public int GetIndex(int x, int y)
     {
-        return GetIndex(x, y, width, height);
+        return GetIndex(x, y, Width, Height);
     }
     public int GetIndex(int x, int y, int width, int height)
     {
@@ -27,7 +27,7 @@ public class MapData : ScriptableObject
     }
     public (int x, int y) GetCoordinates(int index)
     {
-        return GetCoordinates(index, width, height);
+        return GetCoordinates(index, Width, Height);
     }
     public (int x, int y) GetCoordinates(int index, int width, int height)
     {
@@ -37,12 +37,12 @@ public class MapData : ScriptableObject
 
     public void GenerateGrid()
     {
-        tiles = new TileData[width * height];
-        if (availableTiles.Length > 0 && availableTiles[0] != null)
+        Tiles = new TileData[Width * Height];
+        if (AvailableTiles.Length > 0 && AvailableTiles[0] != null)
         {
-            for (int i = 0; i < tiles.Length; i++)
+            for (int i = 0; i < Tiles.Length; i++)
             {
-                tiles[i] = availableTiles[0];
+                Tiles[i] = AvailableTiles[0];
             }
         }
     }

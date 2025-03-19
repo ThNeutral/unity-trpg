@@ -16,23 +16,25 @@ public class MapDataEditor : Editor
 
         if (isFirstRun)
         {
-            previousHeight = map.height;
-            previousWidth = map.width;
+            previousHeight = map.Height;
+            previousWidth = map.Width;
             isFirstRun = false;
+            map.Tiles ??= new TileData[0];
+            map.AvailableTiles ??= new TileData[0];
         }
 
-        map.width = EditorGUILayout.IntField("Width", map.width);
-        map.height = EditorGUILayout.IntField("Height", map.height);
+        map.Width = EditorGUILayout.IntField("Width", map.Width);
+        map.Height = EditorGUILayout.IntField("Height", map.Height);
 
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("availableTiles"), true);
+        EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(map.AvailableTiles)), true);
         serializedObject.ApplyModifiedProperties();
 
-        if (map.availableTiles != null && map.availableTiles.Length > 0)
+        if (map.AvailableTiles != null && map.AvailableTiles.Length > 0)
         {
             selectedTileIndex = EditorGUILayout.Popup(
                 "Available Tiles", 
                 selectedTileIndex, 
-                map.availableTiles.Select((tile) => tile.name).ToArray()
+                map.AvailableTiles.Select((tile) => tile.name).ToArray()
             );
         }
         else
@@ -43,26 +45,26 @@ public class MapDataEditor : Editor
 
         if (GUILayout.Button("Generate Grid"))
         {
-            previousWidth = map.width;
-            previousHeight = map.height;
+            previousWidth = map.Width;
+            previousHeight = map.Height;
             map.GenerateGrid();
             EditorUtility.SetDirty(map);
         }
 
-        if (map.tiles == null) return;
+        if (map.Tiles == null) return;
 
 
         EditorGUILayout.BeginHorizontal();
-        for (int tileIndex = 0; tileIndex < map.tiles.Length; tileIndex++)
+        for (int tileIndex = 0; tileIndex < map.Tiles.Length; tileIndex++)
         {
             var (x, y) = map.GetCoordinates(tileIndex, previousWidth, previousHeight);
             if (x == -1 || y == -1) continue;
             if (y == 0) EditorGUILayout.BeginVertical();
 
-            var index = Array.IndexOf(map.availableTiles, map.tiles[tileIndex]);
+            var index = Array.IndexOf(map.AvailableTiles, map.Tiles[tileIndex]);
             if (GUILayout.Button(index.ToString(), GUILayout.Width(30), GUILayout.Height(30)))
             {
-                map.tiles[tileIndex] = map.availableTiles[selectedTileIndex];
+                map.Tiles[tileIndex] = map.AvailableTiles[selectedTileIndex];
                 EditorUtility.SetDirty(map);
             }
 

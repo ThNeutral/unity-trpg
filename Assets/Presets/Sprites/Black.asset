@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e293746b8e25ea42a111c106fcb3ef9, type: 3}
-  m_Name: Wall
+  m_Script: {fileID: 11500000, guid: ad6851a2de90f0841a5dfb6c197e7176, type: 3}
+  m_Name: Black
   m_EditorClassIdentifier: 
-  IsWalkable: 0
-  SpriteData: {fileID: 11400000, guid: 5ae809c8b9ad3c0478a8228a9a9788f6, type: 2}
+  Color: {r: 0, g: 0, b: 0, a: 1}
+  SizeScale: 1

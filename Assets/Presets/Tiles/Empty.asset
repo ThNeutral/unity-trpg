@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e293746b8e25ea42a111c106fcb3ef9, type: 3}
   m_Name: Empty
   m_EditorClassIdentifier: 
-  sprite: {fileID: -1335823511, guid: ad5f78c1f1349d7469d2ca7f7c0ef51b, type: 3}
-  isWalkable: 1
+  IsWalkable: 1
+  SpriteData: {fileID: 11400000, guid: 1b1934cff70a47f43b1a6660f1d3158b, type: 2}
